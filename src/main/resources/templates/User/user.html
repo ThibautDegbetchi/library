@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Utilisateurs</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: #333333;
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 0.5rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .table {
+      background-color: #ffffff;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .table th {
+      background-color: #007bff;
+      color: #ffffff;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .table td {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #495057;
+    }
+
+    .btn-warning {
+      background-color: #ffc107;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+      border-radius: 0.3rem;
+      transition: transform 0.3s;
+    }
+
+    .btn-warning:hover {
+      transform: scale(1.1);
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+      border-radius: 0.3rem;
+      transition: transform 0.3s;
+    }
+
+    .btn-danger:hover {
+      transform: scale(1.1);
+    }
+
+    .container {
+      padding: 2rem;
+      margin-top: 2rem;
+      background-color: #ffffff;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    td:nth-child(4) {
+      text-align: left;
+    }
+
+    td:nth-child(4)::before {
+      content: "- ";
+      color: #007bff;
+      font-weight: bold;
+    }
+</style>
+
+<body>
+<div th:replace="~{navbar::navbar}"></div>
+
+<div class="container mt-5">
+    <h1 class="mb-4">Liste des Utilisateurs</h1>
+    <a th:href="@{/user/add}" class="btn btn-primary mb-3">Ajouter un Utilisateur</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Livres Empruntés</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:each="book : ${user.borrowedBooks}" th:text="${book.title}"></td>
+            <td>
+                <a th:href="@{/users/edit/{id}(id=${user.id})}" class="btn btn-warning btn-sm">Modifier</a>
+                <a th:href="@{/users/delete/{id}(id=${user.id})}" class="btn btn-danger btn-sm">Supprimer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

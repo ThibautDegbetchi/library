@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajouter un Utilisateur</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    color: #555;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+select {
+    height: 150px;
+    resize: none;
+}
+
+.btn-submit {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn-submit:hover {
+    background-color: #45a049;
+}
+
+</style>
+<body>
+<div class="container">
+  <h1>Ajouter un Nouvel Utilisateur</h1>
+  <form action="/add-user" method="POST">
+    <div class="form-group">
+      <label for="name">Nom</label>
+      <input type="text" id="name" name="name" required placeholder="Entrez le nom de l'utilisateur">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="Entrez l'email de l'utilisateur">
+    </div>
+    <div class="form-group">
+      <label for="borrowedBooks">Livres Empruntés</label>
+      <select id="borrowedBooks" name="borrowedBooks" multiple required>
+        <!-- Les livres doivent être récupérés dynamiquement -->
+        <option value="1">Livre 1</option>
+        <option value="2">Livre 2</option>
+        <option value="3">Livre 3</option>
+        <!-- Ajoutez d'autres livres ici -->
+      </select>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn-submit">Ajouter l'Utilisateur</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>
