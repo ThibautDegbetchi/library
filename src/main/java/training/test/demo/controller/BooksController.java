@@ -47,15 +47,26 @@ public class BooksController {
         }
     }
 
-    @PostMapping("update/{id}")
-    public String updateBook(@PathVariable Long id,Model model,RedirectAttributes res){
+    @GetMapping("{id}")
+    public String updateBookScreen(@PathVariable Long id,Model model,RedirectAttributes res){
         try{
-            Book book = bookService.findById(id);
-            bookService.update(book);
-            return "Book/books";
+            Book book=bookService.findById(id);
+            model.addAttribute("book",book);
+            return "Book/update";
         }catch (Exception e){
             log.error("error: ", e);
-            return "Book/addBook";
+            return "Book/books";
+        }
+    }
+
+    @PostMapping("update/{id}")
+    public String updateBook(@ModelAttribute("book") Book book,Model model,RedirectAttributes res){
+        try{
+            bookService.update(book);
+            return "redirect:/book";
+        }catch (Exception e){
+            log.error("error: ", e);
+            return "Book/update";
         }
     }
 

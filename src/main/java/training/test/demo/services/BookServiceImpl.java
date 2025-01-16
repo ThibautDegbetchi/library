@@ -55,9 +55,9 @@ public class BookServiceImpl implements  BookService {
         Optional<Book> foundBook=bookRepositrory.findById(book.getId());
         if (foundBook.isPresent()){
             Book bookTamp=foundBook.get();
-            book.setAuthor(bookTamp.getAuthor());
-            book.setTitle(bookTamp.getTitle());
-            book.setDescription(bookTamp.getDescription());
+            bookTamp.setAuthor(book.getAuthor());
+            bookTamp.setTitle(book.getTitle());
+            bookTamp.setDescription(book.getDescription());
             return bookRepositrory.save(book);
         }
         return  null;
