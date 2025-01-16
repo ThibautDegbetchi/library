@@ -19,7 +19,8 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("")
-    public String showUserPage(){
+    public String showUserPage(Model model){
+        model.addAttribute("users",userService.findAllUser());
         return  "User/user";
     }
 
