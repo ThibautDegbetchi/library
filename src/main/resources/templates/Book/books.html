@@ -116,8 +116,8 @@
             <td th:text="${book.description}"></td>
             <td th:text="${book.publishedDate}"></td>
             <td>
-                <a th:href="@{/books/edit/{id}(id=${book.id})}" class="btn btn-warning btn-sm">Modifier</a>
-                <a th:href="@{/books/delete/{id}(id=${book.id})}" class="btn btn-danger btn-sm">Supprimer</a>
+                <a th:href="@{/book/update/{id}(id=${book.id})}" class="btn btn-warning btn-sm">Modifier</a>
+                <a th:href="@{/book/delete/{id}(id=${book.id})}" class="btn btn-danger btn-sm">Supprimer</a>
             </td>
         </tr>
         </tbody>

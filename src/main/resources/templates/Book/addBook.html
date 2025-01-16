@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,22 +69,23 @@
 <body>
 <div class="container">
   <h1>Ajouter un Nouveau Livre</h1>
-  <form action="/add-book" method="POST">
+  <form th:action="@{/book/save}" th:object="${book}" method="POST">
+    <input type="hidden" th:field="*{id}" required>
     <div class="form-group">
-      <label for="title">Titre</label>
-      <input type="text" id="title" name="title" required placeholder="Entrez le titre du livre">
+      <label th:for="title">Titre</label>
+      <input th:field="*{title}" type="text" id="title" name="title" required placeholder="Entrez le titre du livre">
     </div>
     <div class="form-group">
-      <label for="author">Auteur</label>
-      <input type="text" id="author" name="author" required placeholder="Entrez l'auteur du livre">
+      <label th:for="author">Auteur</label>
+      <input th:field="*{author}" type="text" id="author" name="author" required placeholder="Entrez l'auteur du livre">
     </div>
     <div class="form-group">
-      <label for="description">Description</label>
-      <textarea id="description" name="description" required placeholder="Entrez la description du livre"></textarea>
+      <label th:for="description">Description</label>
+      <textarea th:field="*{description}" id="description" name="description" required placeholder="Entrez la description du livre"></textarea>
     </div>
     <div class="form-group">
       <label for="publishedDate">Date de Publication</label>
-      <input type="date" id="publishedDate" name="publishedDate" required>
+      <input th:field="*{publishedDate}" type="date" id="publishedDate" name="publishedDate" required>
     </div>
     <div class="form-group">
       <button type="submit" class="btn-submit">Ajouter le Livre</button>

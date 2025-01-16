@@ -64,6 +64,12 @@ public class AuthController {
         return "redirect:/auth";
     }
 
+    @GetMapping("logout")
+    public String logout(Model model,RedirectAttributes res,HttpSession session){
+        sessionController.logout(session);
+        return "Authentification/login";
+    }
+
     public class LoginRequest {
         private String email;
         private String password;
